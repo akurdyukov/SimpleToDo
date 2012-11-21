@@ -5,7 +5,7 @@ namespace SimpleToDo
 {
 	[Serializable]
 	[Class(Table = "TODOITEMS")]
-	public class ToDoItem
+    public class ToDoItem
 	{
 		[Id(0, Column = "ID", Name = "Id")]
 		[Generator(1, Class = "native")]

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Dynamic;
+using System.Linq;
+using DotLiquid;
 using Nancy;
 using Nancy.ModelBinding;
 
@@ -40,7 +42,7 @@ namespace SimpleToDo
 		private dynamic RenderMain(dynamic parameters)
 		{
 			dynamic model = new ExpandoObject();
-			model.Items = dao.List();
+            model.Items = dao.List().Select(Hash.FromAnonymousObject).ToList();
 			return View["index", model];
 		}
 	}

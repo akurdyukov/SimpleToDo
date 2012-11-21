@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Castle.Facilities.AutoTx;
+﻿using Castle.Facilities.AutoTx;
 using Castle.Facilities.NHibernate;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -27,13 +23,13 @@ namespace SimpleToDo
 			base.ConfigureApplicationContainer(container);
 
 			// TODO: install facilities here
-			container
-				.AddFacility<AutoTxFacility>()
-				.Register(
-					Component.For<INHibernateInstaller>().ImplementedBy<NHibInstaller>().LifestyleSingleton(),
-					Component.For<IToDoDao>().ImplementedBy<ToDoDao>().LifestyleSingleton()
-				)
-				.AddFacility<NHibernateFacility>();
+		    container
+		        .AddFacility<AutoTxFacility>()
+		        .Register(
+		            Component.For<INHibernateInstaller>().ImplementedBy<NHibInstaller>().LifestyleSingleton(),
+		            Component.For<IToDoDao>().ImplementedBy<ToDoDao>().LifestyleSingleton()
+		        )
+		        .AddFacility<NHibernateFacility>();
 		}
 
 		protected override void ConfigureConventions(NancyConventions nancyConventions)
