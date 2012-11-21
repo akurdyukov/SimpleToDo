@@ -9,6 +9,7 @@ using Castle.Transactions;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Mapping.Attributes;
+using NHibernate.Tool.hbm2ddl;
 
 namespace SimpleToDo
 {
@@ -50,7 +51,7 @@ namespace SimpleToDo
 					IDictionary<string, string> props = new Dictionary<string, string>()
 					                                    	{
 																{"connection.driver_class", "NHibernate.Driver.NpgsqlDriver"},
-																{"connection.connection_string", "Server=10.211.55.2; Port=5432; User Id=test; Password=test; Database=testdb;"},
+																{"connection.connection_string", "Server=localhost; Port=5432; User Id=test; Password=test; Database=testdb;"},
 					                                    		{"dialect", "NHibernate.Dialect.PostgreSQL82Dialect"}, 
 																{"show_sql", "true"}
 					                                    	};
@@ -58,6 +59,9 @@ namespace SimpleToDo
 					config = new Configuration()
 						.SetProperties(props)
 						.AddInputStream(HbmSerializer.Default.Serialize(Assembly.GetExecutingAssembly()));
+
+                    // apply schema
+                    new SchemaUpdate(config).Execute(false, true);
 				}
 				return config;
 			}

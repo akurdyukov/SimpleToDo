@@ -30,8 +30,8 @@ namespace SimpleToDo
 			container
 				.AddFacility<AutoTxFacility>()
 				.Register(
-					Component.For<INHibernateInstaller>().ImplementedBy<NHibInstaller>(),
-					Component.For<IToDoDao>().ImplementedBy<ToDoDao>()
+					Component.For<INHibernateInstaller>().ImplementedBy<NHibInstaller>().LifestyleSingleton(),
+					Component.For<IToDoDao>().ImplementedBy<ToDoDao>().LifestyleSingleton()
 				)
 				.AddFacility<NHibernateFacility>();
 		}
