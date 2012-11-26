@@ -1,0 +1,17 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>Simple ToDo</title>
+	</head>
+	<body>
+		{% for item in Model.Items -%}
+			<div>{{ item.Name }} {{ item.CreatedAt }}</div>
+		{% endfor -%}
+		<form method="POST" action=".">
+			<div>
+				<input type="text" name="Name"></input>
+				<input type="submit" value="Add"></input>
+			</div>
+		</form>
+	</body>
+</html>
